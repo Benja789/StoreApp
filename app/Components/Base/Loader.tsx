@@ -13,7 +13,7 @@ const Loader = () =>{
                 blurType="dark"
                 blurAmount={1}
                 reducedTransparencyFallbackColor="white"/>
-            <ActivityIndicator size="large" color="#0000ff" />
+            <ActivityIndicator size="large" color="#000" style={Base.centredItem}/>
         </Modal>
     );
 }

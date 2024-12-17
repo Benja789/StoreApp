@@ -1,7 +1,7 @@
 import { createContext, Dispatch, SetStateAction } from "react"
 
 export interface IUser {
-    email: string
+    username: string
     name: string
     token: string
 }

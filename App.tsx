@@ -7,8 +7,9 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import AppContext from './app/Context/AppContex';
 import Loader from './app/Components/Base/Loader';
 import AuthRouter from './app/Router/AuthRouter';
-import HomeRouter from './app/Router/HomeRouter';
+import TabsRouter from './app/Router/Tabs';
 import SnackNotification from './app/Components/Base/SnackNotification';
+import LoaderApp from './app/Components/Base/LoaderApp';
 
 const Stack = createNativeStackNavigator();
 
@@ -23,9 +24,10 @@ const App = () => {
 				<SnackNotification />
 				<StatusBar animated={false} backgroundColor="#FFF" barStyle="dark-content" />
 				<NavigationContainer>
-					<Stack.Navigator initialRouteName="Auth">
+					<Stack.Navigator initialRouteName="Loader">
+						<Stack.Screen name="Loader" component={LoaderApp} options={baseOptions}/>
 						<Stack.Screen name="Auth" component={AuthRouter} options={baseOptions}/>
-						<Stack.Screen name="Home" component={HomeRouter} options={baseOptions}/>
+						<Stack.Screen name="Tabs" component={TabsRouter} options={baseOptions}/>
 					</Stack.Navigator>
 				</NavigationContainer>
 			</AppContext>
