@@ -9,7 +9,6 @@ const TabRouterStyles = StyleSheet.create({
         borderWidth: 0.1,
         left: 25,
         backgroundColor: '#FFF',
-        // borderRadius: 45,
         borderTopEndRadius: 25,
         borderTopStartRadius: 25,
         justifyContent: 'center',

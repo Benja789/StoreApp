@@ -4,7 +4,8 @@ const Environmet = {
     ENDPOINTS: {
         LOGIN: '/auth/login',
         REGISTER: '/auth/register',
-        PRODUCTS: '/products'
+        PRODUCTS: '/products',
+        CATEGORIES: '/products/categories'
     }
 }
 

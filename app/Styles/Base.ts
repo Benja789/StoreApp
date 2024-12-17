@@ -82,7 +82,28 @@ const Base = StyleSheet.create({
         fontSize: 12,
         fontFamily: 'Poppins-Bold',
         textAlign: 'left',
-    }
+    },
+
+    // Sombras
+    shadow: {
+        shadowColor: Colors.shadowColor,
+        shadowOffset: {
+            width: 2, 
+            height: 2, 
+        },
+        borderWidth: 1,
+        borderColor: Colors.border,
+        shadowRadius: 3.84, 
+        shadowOpacity: 0.01, 
+    },
+
+
+    // Separador
+    separator: {
+        marginVertical: 10,
+        borderBottomWidth: 1,
+        borderColor: "#ccc",
+    },
 })
 
 export default Base;

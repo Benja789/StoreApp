@@ -44,6 +44,7 @@ const LoaderApp = () => {
             console.log(error.message)
         }
     }
+    
     return (
         <SafeAreaView style={{flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: Colors.background}}>
             <LoaderKit
