@@ -30,6 +30,10 @@ const AppContext = ({children}: { children?: React.ReactNode }) => {
         setUser(null)
     }
 
+    // Metodo para formatear el precio
+    const formatedPrice = ( number: number ) => (Math.round(number * 100) /100 ).toFixed(2)
+
+
     const values = {
         user,
         setUser,
@@ -41,7 +45,8 @@ const AppContext = ({children}: { children?: React.ReactNode }) => {
         modalNotification,
         setModalNotification,
         snackNotification,
-        setSnackNotification
+        setSnackNotification,
+        formatedPrice
     }
 
     return (

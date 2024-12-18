@@ -114,10 +114,7 @@ const Login = () => {
                                 placeholder="benjamin"
                                 placeholderTextColor="#a3a3a3" 
                                 style={Base.inputText} />
-                            {
-                                errorMessage.email !== "" &&
-                                <Text style={[  Base.errorText, ]}>{errorMessage.email}</Text>
-                            }
+                            { errorMessage.email !== "" && <Text style={[  Base.errorText, ]}>{errorMessage.email}</Text> }
 
                             <Text style={[Base.textP, { textAlign: "left", marginTop: 20 }]}>Contraseña</Text>
                             <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -135,23 +132,19 @@ const Login = () => {
                                             icon={require("../../Assets/Icons/hidden.png")}
                                             callBack={()=> setShowPassword(prev => !prev)}/>
                                         :
-
                                         <IconButton 
                                             icon={require("../../Assets/Icons/show.png")}
                                             callBack={()=> setShowPassword(prev => !prev)}/>
                                 }
                             </View>
-                            {
-                                errorMessage.password !== "" &&
-                                <Text style={[ Base.errorText]}>{errorMessage.password}</Text>
-                            }
+                            { errorMessage.password !== "" && <Text style={[ Base.errorText]}>{errorMessage.password}</Text> }
 
                             <BouncyCheckbox
                                 size={25}
                                 style={{ marginTop: 20 }}
                                 fillColor={Colors.primary}
                                 unFillColor="#FFFFFF"
-                                text="Deseo guardar mi sesión"
+                                text="Deseo guardar mis credenciales"
                                 innerIconStyle={{ borderWidth: 2 }}
                                 textStyle={{ fontFamily: "JosefinSans-Regular",  textDecorationLine: "none"  }}
                                 onPress={(isChecked: boolean) => setSaveSession(isChecked)}/>

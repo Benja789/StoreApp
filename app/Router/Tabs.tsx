@@ -7,6 +7,7 @@ import { Animated, Image, Text, TouchableOpacity } from 'react-native';
 import TabRouterStyles from '../Styles/TabStyles';
 import Profile from '../Pages/Profile';
 import Carts from '../Pages/Carts';
+import HomeRouter from './HomeRouter';
 
 const Tab = createBottomTabNavigator();
 
@@ -78,7 +79,7 @@ const TabsRouter = () => {
     const ListComponent:any = [
         {
             screen : "Home",
-            component: Home,
+            component: HomeRouter,
             icon: require('../Assets/Icons/Tabs/home.png'),
         },{
             screen: "Carts",

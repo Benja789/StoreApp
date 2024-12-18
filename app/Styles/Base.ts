@@ -64,7 +64,10 @@ const Base = StyleSheet.create({
     safeAreaContainer: {
         flex: 1,
         backgroundColor: Colors.background,
-
+    },
+    bodyContainer: {
+        width: '90%',
+        marginHorizontal: 'auto',
     },
 
     // InpuText

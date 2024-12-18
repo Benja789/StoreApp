@@ -50,6 +50,8 @@ export interface IAppContext {
 
     snackNotification: ISnackNotification
     setSnackNotification: Dispatch<SetStateAction<ISnackNotification>>
+
+    formatedPrice: (number: number) => string
 }
 
 const AppContextProvider = createContext<IAppContext>({
@@ -82,7 +84,8 @@ const AppContextProvider = createContext<IAppContext>({
         open: false,
         type: 'info'
     },
-    setSnackNotification: () => {}
+    setSnackNotification: () => {},
+    formatedPrice: () => ''
 })
 
 export default AppContextProvider
