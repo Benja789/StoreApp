@@ -25,6 +25,59 @@ const AppContext = ({children}: { children?: React.ReactNode }) => {
         open: false,
         type: 'info'
     })
+    const [carts, setCarts] = useState<any[]>([])
+    const [total, setTotal] = useState<number>(0)
+
+    const addCart = (cart: any) => {
+        let cartIndex = carts.findIndex( item => item.id === cart.id)
+        if (cartIndex === -1) {
+            setCarts([...carts, cart])
+        } else {
+            carts[cartIndex].quantity += 1
+            setCarts([...carts])
+        }
+        calculateTotal()
+    }
+
+    const removeCart = (cart: any) => {
+        let cartIndex = carts.findIndex( item => item.id === cart.id)
+        console.log(cartIndex)
+        if (carts[cartIndex]?.quantity > 1) {
+            carts[cartIndex].quantity -= 1
+            setCarts([...carts])
+        } else {
+            carts.splice(cartIndex, 1)
+            setCarts([...carts])
+            setSnackNotification({
+                open: true,
+                message: "Producto eliminado del carrito",
+                type: "success"
+            })
+        }
+        calculateTotal()
+    }
+
+    const changeQuantityCart = (cart: any, type: string) => {
+        let cartIndex = carts.findIndex( item => item.id === cart.id)
+        if (type === 'add') {
+            carts[cartIndex].quantity += 1
+            setCarts([...carts])
+        } else {
+            if (carts[cartIndex]?.quantity > 1) {
+                carts[cartIndex].quantity -= 1
+                setCarts([...carts])
+            } else {
+                carts.splice(cartIndex, 1)
+                setCarts([...carts])
+                setSnackNotification({
+                    open: true,
+                    message: "Producto eliminado del carrito",
+                    type: "success"
+                })
+            }
+        }
+        calculateTotal()
+    }
 
     const logout = () => {
         setUser(null)
@@ -33,6 +86,14 @@ const AppContext = ({children}: { children?: React.ReactNode }) => {
     // Metodo para formatear el precio
     const formatedPrice = ( number: number ) => (Math.round(number * 100) /100 ).toFixed(2)
 
+    const calculateTotal = () => {
+        let totalCalulate = 0
+        carts.forEach( item => {
+            totalCalulate += item.price * item.quantity
+        })
+        setTotal(totalCalulate)
+        return totalCalulate
+    }
 
     const values = {
         user,
@@ -40,6 +101,14 @@ const AppContext = ({children}: { children?: React.ReactNode }) => {
         logout,
         loader,
         setLoader,
+        carts,
+        setCarts,
+        addCart,
+        total,
+        setTotal,
+        calculateTotal,
+        removeCart,
+        changeQuantityCart,
         settings,
         setSettings,
         modalNotification,

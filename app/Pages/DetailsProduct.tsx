@@ -15,6 +15,11 @@ const DetailsProduct = ({ route }:any) => {
     const appContext = useContext(AppContextProvider)
     const [loader, setLoader] = useState(true)
     const [product, setProduct] = useState<any>({})
+    const [label, setLabel] = useState("Agregar")
+
+    useEffect(() => {
+        changeLabel()
+    }, [product, appContext.carts])
 
     useEffect(()=> {
         getProduct() 
@@ -27,7 +32,9 @@ const DetailsProduct = ({ route }:any) => {
             setLoader: setLoader
         })
 
-        if (!response.error) setProduct(response.data)
+        if (!response.error) {
+            setProduct(response.data)
+        }
         else {
             appContext.setSnackNotification({
                 open: true,
@@ -37,6 +44,16 @@ const DetailsProduct = ({ route }:any) => {
         }
     }
 
+    const addToCart = () => {
+        appContext.addCart({...product, quantity: 1})
+
+    }
+
+    const changeLabel = () => {
+        let flag = appContext.carts.find((item: any) => item.id === product.id)
+        if ( flag ) setLabel(`Añadir más (${flag.quantity})`)
+        else setLabel("Agregar al carrito")
+    }
     // Metodo para navegar para atras
     const goBack = () => {
         navigation.goBack()
@@ -81,7 +98,7 @@ const DetailsProduct = ({ route }:any) => {
                             <Text style={[Base.textTitleH3 ]}>Precio</Text>
                             <Text style={[Base.textTitleH2 ]}>$ {appContext.formatedPrice(product.price)}</Text>
                         </View>
-                        <CustomButton text="Agregar al carrito" buttonStyle={{ maxWidth: 200 }} callBack={()=>{}} />
+                        <CustomButton text={label} buttonStyle={{ maxWidth: 200 }} callBack={addToCart} />
                     </View>
             }
             <View style={{ height: 80 }}></View>

@@ -146,7 +146,7 @@ const Home = () => {
         <SafeAreaView style={[Base.safeAreaContainer]}>
             <View style={HomeStyles.titleContainer}>
                 <Text style={[Base.textTitleH1]}>Hola, {appContext.user?.name}</Text>
-                <Text style={[Base.textP]}>Bienvenido a tu aplicación de ropa</Text>
+                <Text style={[Base.textP]}>Bienvenido a StoreApp</Text>
                 <TextInput
                     value={search.text}
                     keyboardType="default"

@@ -37,7 +37,25 @@ const TabRouterStyles = StyleSheet.create({
         textAlign: 'center',
         color: '#3B6840',
         bottom: 10,
-    }
+    },
+    containerBadge: {
+        backgroundColor: "#FF0000",
+        height: 15,
+        width: 15,
+        borderRadius: 20,
+        flexDirection: "row",
+        justifyContent: "center",
+        alignItems: "center",
+        zIndex: -1,
+        position: "absolute",
+        right: 0,
+        top: 5,
+    },
+    textBadge: {
+        color: "#FFF",
+        fontFamily: "Poppins-Bold",
+        fontSize: 12,
+    },
 })
 
 export default TabRouterStyles

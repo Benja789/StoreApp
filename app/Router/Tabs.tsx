@@ -2,16 +2,18 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 // Paginas
 import Home from '../Pages/Home';
-import { useEffect, useRef } from 'react';
-import { Animated, Image, Text, TouchableOpacity } from 'react-native';
+import { useContext, useEffect, useRef } from 'react';
+import { Animated, Image, Text, TouchableOpacity, View } from 'react-native';
 import TabRouterStyles from '../Styles/TabStyles';
 import Profile from '../Pages/Profile';
 import Carts from '../Pages/Carts';
 import HomeRouter from './HomeRouter';
+import AppContextProvider from '../Interfaces/IAppContext';
 
 const Tab = createBottomTabNavigator();
 
 const ButtonTab = ({item, accessibilityState, onPress}:any) => {
+    const appContext = useContext(AppContextProvider)
     const animatedValues = {
         translate: useRef(new Animated.Value(0)).current,
         scale: useRef(new Animated.Value(0)).current,
@@ -52,10 +54,16 @@ const ButtonTab = ({item, accessibilityState, onPress}:any) => {
 
     return (
         <TouchableOpacity
-            onPress={onPress}
-            style={TabRouterStyles.container} >
+        onPress={onPress}
+        style={TabRouterStyles.container} >
             <Animated.View
                 style={[TabRouterStyles.button, translateStyles]} >
+                    {
+                        item.screen === "Carts" && appContext.carts.length > 0 &&
+                            <View style={TabRouterStyles.containerBadge}>
+                                <Text style={TabRouterStyles.textBadge}>{ appContext.carts.length }</Text>
+                            </View>
+                    }
                     <Image source={item.icon} style={{ width: 30, height: 30}}/>
             </Animated.View>
             <Text 

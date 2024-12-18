@@ -17,6 +17,16 @@ const CustomButtonStyle = StyleSheet.create({
     },
     disabled: {
         backgroundColor: Colors.shadowColor
+    },
+    icon: {
+        width: 10,
+        height: 10,
+    },
+    textContainer: {
+        flexDirection: 'row',
+        gap: 10,
+        alignItems: 'center',
+        justifyContent: 'center',
     }
 })
 

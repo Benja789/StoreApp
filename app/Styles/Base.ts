@@ -107,6 +107,21 @@ const Base = StyleSheet.create({
         borderBottomWidth: 1,
         borderColor: "#ccc",
     },
+
+
+    // Boton eliminar
+    buttonDelete: {
+        backgroundColor: '#fce8ea',
+        padding: 10,
+        borderRadius: 5,
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: 140,
+        height: 39,
+    },
+    textButtonDelete: {
+        color: '#d8414e'
+    }
 })
 
 export default Base;

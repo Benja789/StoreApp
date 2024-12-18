@@ -1,6 +1,6 @@
 import { Text, View, Image, TouchableOpacity } from "react-native";
 import Base from "../../Styles/Base";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import AppContextProvider from "../../Interfaces/IAppContext";
 import CustomButton from "../Base/CustomButton";
 import { useNavigation } from "@react-navigation/native";
@@ -8,12 +8,21 @@ import { useNavigation } from "@react-navigation/native";
 const CardProduct = ({ product }: any) => {
     const appContext = useContext(AppContextProvider)
     const navigate = useNavigation<any>()
+    const [label, setLabel] = useState("Agregar")
+
+    useEffect(() => {
+        let flag = appContext.carts.find((item: any) => item.id === product.id)
+        if ( flag ) setLabel(`Añadir más (${flag.quantity})`)
+        else setLabel("Agregar")
+    }, [appContext.carts])
 
     const navigateToDetails = () => {
-        console.log(product.id)
         navigate.navigate("DetailsProduct", { id: product.id })
     }
-    
+
+    const addProduct = () => {
+        appContext.addCart({...product, quantity: 1})
+    }
     return (
         <TouchableOpacity onPress={navigateToDetails} style={[Base.card, { margin: 10,  alignItems: 'center', padding: 20, width: "45%" }]}>
                 <Image source={{ uri: product.image }} style={{ width: 130, height: 130 }} />
@@ -26,10 +35,10 @@ const CardProduct = ({ product }: any) => {
                         <Text style={[Base.textP, { textAlign:"left"}]}>${appContext.formatedPrice(product.price)}</Text>
                     </View>
                     <CustomButton 
-                        text="Agregar" 
+                        text={label}
                         buttonStyle={{ width:"90%"}}
                         textStyle={{ fontSize: 12 }}
-                        callBack={()=>{}}/>
+                        callBack={addProduct}/>
                 </View>
         </TouchableOpacity>
    );

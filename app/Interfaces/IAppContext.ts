@@ -37,6 +37,13 @@ export interface ISnackNotification {
 export interface IAppContext {
     user: IUser | null
     setUser: Dispatch<SetStateAction<IUser | null>>
+
+    carts: any[]
+    setCarts: Dispatch<SetStateAction<any[]>>
+
+    total: number
+    setTotal: Dispatch<SetStateAction<number>>
+
     logout: () => void
 
     loader: boolean
@@ -52,6 +59,12 @@ export interface IAppContext {
     setSnackNotification: Dispatch<SetStateAction<ISnackNotification>>
 
     formatedPrice: (number: number) => string
+
+
+    addCart: (cart: any) => void
+    removeCart: (cart: any) => void
+    changeQuantityCart: (cart: any, type: string) => void
+    calculateTotal: () => number
 }
 
 const AppContextProvider = createContext<IAppContext>({
@@ -60,6 +73,17 @@ const AppContextProvider = createContext<IAppContext>({
 
     loader: false,
     setLoader: () => {},
+
+    total: 0,
+    setTotal: () => 0,
+
+    carts: [],
+    setCarts: () => {},
+
+    addCart: () => {},
+    removeCart: () => {},
+    changeQuantityCart: () => {},
+    calculateTotal: () => 0,
 
     logout: () => {},
     settings: {
